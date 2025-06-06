@@ -1,0 +1,48 @@
+{
+  "name": "mcp-browser-transport",
+  "version": "0.0.1",
+  "description": "mcp-browser-transport",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && npm run types && rollup -c rollup.config.mjs",
+    "watch": "concurrently \"npm run types -- --watch\" \"rollup -c -w rollup.config.mjs\"",
+    "types": "tsc --emitDeclarationOnly",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaindropSaber/mcp-browser-transport.git"
+  },
+  "keywords": [
+    "mcp",
+    "browser",
+    "transport",
+    "ai"
+  ],
+  "author": "Raindrop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RaindropSaber/mcp-browser-transport/issues"
+  },
+  "homepage": "https://github.com/RaindropSaber/mcp-browser-transport#readme",
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "concurrently": "^9.1.2",
+    "rollup": "^4.41.1",
+    "tslib": "*",
+    "typescript": "^5.8.3"
+  }
+}
