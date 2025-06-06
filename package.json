@@ -1,6 +1,6 @@
 {
   "name": "mcp-browser-transport",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "mcp-browser-transport",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
