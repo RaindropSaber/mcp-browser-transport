@@ -1,6 +1,6 @@
 {
   "name": "mcp-browser-transport",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "mcp-browser-transport",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -12,6 +12,7 @@
     "build": "rm -rf dist && npm run types && rollup -c rollup.config.mjs",
     "watch": "concurrently \"npm run types -- --watch\" \"rollup -c -w rollup.config.mjs\"",
     "types": "tsc --emitDeclarationOnly",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

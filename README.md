@@ -14,20 +14,15 @@ npm install mcp-browser-transport @modelcontextprotocol/sdk
 
 ```ts
 import { createSameContextTransports } from 'mcp-browser-transport';
-import { Client, Server } from '@modelcontextprotocol/sdk';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 // 创建一对 transport
 const { clientTransport, serverTransport } = createSameContextTransports();
 
 // 用 transport 实例初始化 SDK
 const client = new Client({ transport: clientTransport });
-const server = new Server({
-  transport: serverTransport,
-  handler: async (req) => {
-    // 处理请求
-    return { result: 'pong' };
-  },
-});
+const server = new McpServer({ transport: serverTransport });
 
 // 启动
 await clientTransport.start();
@@ -44,7 +39,8 @@ console.log(result); // { result: 'pong' }
 
 ```ts
 import { BrowserTransport } from 'mcp-browser-transport';
-import { Client } from '@modelcontextprotocol/sdk';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
 // 以 iframe 场景为例：
 // 父页面
@@ -60,8 +56,8 @@ await transport.start();
 window.addEventListener('message', (event) => {
   if (event.data === 'init' && event.ports[0]) {
     const transport = new BrowserTransport(event.ports[0]);
-    // 这里可以初始化 Server 或其它 SDK 实例
-    const server = new Server({ transport, handler: ... });
+    // 这里可以初始化 Server
+    const server = new McpServer({ transport });
   }
 });
 ```
@@ -69,7 +65,7 @@ window.addEventListener('message', (event) => {
 ## API
 
 - `BrowserTransport`：基于 MessagePort 的 Transport 实现
-- `createSameContextTransports()`：快速创建一对可互通的 Transport 实例，便于本地测试
+- `createSameContextTransports()`：快速创建一对可互通的 Transport 实例，在相同上下文中使用
 
 ## 依赖
 
